@@ -1,42 +1,41 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import * as base from './types/base';
+import * as shop from './types/basic/shop';
+import { getTimestamp, request, sign } from './utils';
 
-class WdtStatic {
+const HOST = 'http://api.wangdian.cn/openapi2';
+const SANDBOX_HOST = 'http://sandbox.wangdian.cn/openapi2';
+const Path = {
+    shop: '/shop.php',
+};
 
-    static sandbox = false;
-    static host = 'http://api.wangdian.cn/openapi2';
-    static sandboxHost = 'http://sandbox.wangdian.cn/openapi2';
-
-    static getHost() {
-        return !this.sandbox ? this.host : this.sandboxHost;
-    }
-
-    static async request<T = any>(path: string, data: any) {
-        try {
-            const options: AxiosRequestConfig = {
-                data,
-                method: 'POST',
-                url: this.getHost() + path,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            }
-            const res = await axios.request(options);
-            return res as any as T;
-        } catch (err) {
-            throw err;
-        } finally {
-
-        }
+function buildReqData(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (data: base.Request) {
+        const { sid, appkey, appsecret } = this as Wdt;
+        data = { ...data, sid: sid, appkey: appkey, timestamp: getTimestamp() };
+        data.sign = sign(data, appsecret);
+        return original.apply(this, [data]);
     }
 }
 
 export class Wdt {
 
+    host = '';
     sid: string = '';
-    appKey: string = '';
+    appkey: string = '';
+    appsecret: string = '';
 
-    constructor(sid: string, appKey: string) {
-        this.sid = sid;
-        this.appKey = appKey;
+    constructor(opt: { sid: string, appkey: string, appsecret: string, sandbox?: boolean }) {
+        this.sid = opt.sid;
+        this.appkey = opt.appkey;
+        this.appsecret = opt.appsecret;
+        this.host = opt.sandbox ? SANDBOX_HOST : HOST;
     }
+
+    @buildReqData
+    async shop(data: shop.Request) {
+        return await request<shop.Response>(this.host + Path.shop, data);
+    }
+
 }
+
