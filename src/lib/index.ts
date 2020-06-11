@@ -44,5 +44,15 @@ export class Wdt {
         return await request<basic.logistics.Response>(this.host + basic.logistics.path, data);
     }
 
+    @buildReqData
+    async purchaseProviderQuery(data: basic.purchaseProviderQuery.Request) {
+        return await request<basic.purchaseProviderQuery.Response>(this.host + basic.purchaseProviderQuery.path, data);
+    }
+
+    @buildReqData
+    async purchaseProviderCreate(data: basic.purchaseProviderCreate.Request) {
+        return await request<basic.purchaseProviderCreate.Response>(this.host + basic.purchaseProviderCreate.path, data);
+    }
+
 }
 
