@@ -1,12 +1,9 @@
-import * as base from './types/base';
-import * as shop from './types/basic/shop';
+import * as base from './base';
+import * as basic from './base/basic';
 import { getTimestamp, request, sign } from './utils';
 
 const HOST = 'http://api.wangdian.cn/openapi2';
 const SANDBOX_HOST = 'http://sandbox.wangdian.cn/openapi2';
-const Path = {
-    shop: '/shop.php',
-};
 
 function buildReqData(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const original = descriptor.value;
@@ -33,8 +30,18 @@ export class Wdt {
     }
 
     @buildReqData
-    async shop(data: shop.Request) {
-        return await request<shop.Response>(this.host + Path.shop, data);
+    async shop(data: basic.shop.Request) {
+        return await request<basic.shop.Response>(this.host + basic.shop.path, data);
+    }
+
+    @buildReqData
+    async warehouseQuery(data: basic.warehouseQuery.Request) {
+        return await request<basic.warehouseQuery.Response>(this.host + basic.warehouseQuery.path, data);
+    }
+
+    @buildReqData
+    async logistics(data: basic.logistics.Request) {
+        return await request<basic.logistics.Response>(this.host + basic.logistics.path, data);
     }
 
 }

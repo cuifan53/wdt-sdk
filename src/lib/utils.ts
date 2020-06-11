@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { createHash } from 'crypto';
-import * as base from './types/base';
+import * as base from './base';
 
 export function getTimestamp(date?: Date) {
     date = date || new Date();

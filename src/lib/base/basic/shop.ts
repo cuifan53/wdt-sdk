@@ -1,4 +1,12 @@
-import * as base from '../base';
+/**
+ * 查询店铺
+ * 获取ERP的店铺档案资料
+ * https://open.wangdian.cn/qyb/open/apidoc/doc?path=shop.php
+ */
+
+import * as base from '..';
+
+export const path = '/shop.php';
 
 export interface Request extends base.Request {
 
@@ -10,7 +18,6 @@ export interface Request extends base.Request {
 
     /**
      * 平台ID
-     * 查看平台ID详情：https://open.wangdian.cn/qyb/open/apidoc/doc?path=shop.php 
      */
     platform?: number;
 
