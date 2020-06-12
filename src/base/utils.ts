@@ -39,21 +39,17 @@ export function sign(data: Request, appsecret: string) {
 }
 
 export async function request<T = any>(url: string, data: any) {
-    try {
-        const dataArr: string[] = [];
-        for (const k in data) {
-            dataArr.push(`${k}=${encodeURI(data[k])}`);
-        }
-        const dataStr = dataArr.join('&');
-        const options: AxiosRequestConfig = {
-            url, data: dataStr, method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-        const res = await axios.request(options);
-        return res.data as any as T;
-    } catch (err) {
-        throw err;
+    const dataArr: string[] = [];
+    for (const k in data) {
+        dataArr.push(`${k}=${encodeURI(data[k])}`);
     }
+    const dataStr = dataArr.join('&');
+    const options: AxiosRequestConfig = {
+        url, data: dataStr, method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    }
+    const res = await axios.request(options);
+    return res.data as any as T;
 }

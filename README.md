@@ -13,8 +13,15 @@ const wdt = new Wdt({
 })
 
 // 查询店铺
+// https://open.wangdian.cn/qyb/open/apidoc/doc?path=shop.php
 async function shop(){
-    const res = wdt.shop({...});
+    // 这里只需传入 业务请求参数 即可
+    const res = await wdt.shop({
+        shop_no: 'abcd',
+        platform: 1,
+        page_size: 10,
+        page_no: 0,
+    });
     const shoplist = res.shoplist;
 }
 ```
