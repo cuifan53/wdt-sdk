@@ -1,5 +1,5 @@
 {
-  "name": "wdt-sdk",
+  "name": "@icoastline/wdt-sdk",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -11,16 +11,8 @@
     "build": "npx tsc -p .",
     "test": "ts-node test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cuifan53/wdt-sdk.git"
-  },
   "author": "cuifan53",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cuifan53/wdt-sdk/issues"
-  },
-  "homepage": "https://github.com/cuifan53/wdt-sdk#readme",
   "dependencies": {
     "axios": "^0.19.2"
   },
