@@ -1,9 +1,7 @@
-import { Request } from './base/base';
-import { basic, goods, trade, refund, purchase, stock } from './base';
-import { getTimestamp, request, sign } from './base/utils';
-
-const HOST = 'http://api.wangdian.cn/openapi2';
-const SANDBOX_HOST = 'http://sandbox.wangdian.cn/openapi2';
+import * as PATH from './path';
+import * as types from './types';
+import { Request } from './types/base';
+import { getTimestamp, request, sign } from './utils';
 
 function buildReqData(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const original = descriptor.value;
@@ -26,282 +24,282 @@ export class Wdt {
         this.sid = opt.sid;
         this.appkey = opt.appkey;
         this.appsecret = opt.appsecret;
-        this.host = opt.sandbox ? SANDBOX_HOST : HOST;
+        this.host = opt.sandbox ? PATH.SANDBOX_HOST : PATH.HOST;
     }
 
     @buildReqData
-    async shop(data: basic.shop.Request) {
-        return await request<basic.shop.Response>(this.host + basic.shop.path, data);
+    async shop(data: types.shop.Request) {
+        return await request<types.shop.Response>(this.host + PATH.SHOP, data);
     }
 
     @buildReqData
-    async warehouseQuery(data: basic.warehouseQuery.Request) {
-        return await request<basic.warehouseQuery.Response>(this.host + basic.warehouseQuery.path, data);
+    async warehouseQuery(data: types.warehouseQuery.Request) {
+        return await request<types.warehouseQuery.Response>(this.host + PATH.WAREHOUSE_QUERY, data);
     }
 
     @buildReqData
-    async logistics(data: basic.logistics.Request) {
-        return await request<basic.logistics.Response>(this.host + basic.logistics.path, data);
+    async logistics(data: types.logistics.Request) {
+        return await request<types.logistics.Response>(this.host + PATH.LOGISTICS, data);
     }
 
     @buildReqData
-    async purchaseProviderQuery(data: basic.purchaseProviderQuery.Request) {
-        return await request<basic.purchaseProviderQuery.Response>(this.host + basic.purchaseProviderQuery.path, data);
+    async purchaseProviderQuery(data: types.purchaseProviderQuery.Request) {
+        return await request<types.purchaseProviderQuery.Response>(this.host + PATH.PURCHASE_PROVIDER_QUERY, data);
     }
 
     @buildReqData
-    async purchaseProviderCreate(data: basic.purchaseProviderCreate.Request) {
-        return await request<basic.purchaseProviderCreate.Response>(this.host + basic.purchaseProviderCreate.path, data);
+    async purchaseProviderCreate(data: types.purchaseProviderCreate.Request) {
+        return await request<types.purchaseProviderCreate.Response>(this.host + PATH.PURCHASE_PROVIDER_CREATE, data);
     }
 
     @buildReqData
-    async goodsPush(data: goods.goodsPush.Request) {
-        return await request<goods.goodsPush.Response>(this.host + goods.goodsPush.path, data);
+    async goodsPush(data: types.goodsPush.Request) {
+        return await request<types.goodsPush.Response>(this.host + PATH.GOODS_PUSH, data);
     }
 
     @buildReqData
-    async goodsQuery(data: goods.goodsQuery.Request) {
-        return await request<goods.goodsQuery.Response>(this.host + goods.goodsQuery.path, data);
+    async goodsQuery(data: types.goodsQuery.Request) {
+        return await request<types.goodsQuery.Response>(this.host + PATH.GOODS_QUERY, data);
     }
 
     @buildReqData
-    async apiGoodsspecPush(data: goods.apiGoodsspecPush.Request) {
-        return await request<goods.apiGoodsspecPush.Response>(this.host + goods.apiGoodsspecPush.path, data);
+    async apiGoodsspecPush(data: types.apiGoodsspecPush.Request) {
+        return await request<types.apiGoodsspecPush.Response>(this.host + PATH.API_GOODSSPEC_PUSH, data);
     }
 
     @buildReqData
-    async vipApiGoodsQuery(data: goods.vipApiGoodsQuery.Request) {
-        return await request<goods.vipApiGoodsQuery.Response>(this.host + goods.vipApiGoodsQuery.path, data);
+    async vipApiGoodsQuery(data: types.vipApiGoodsQuery.Request) {
+        return await request<types.vipApiGoodsQuery.Response>(this.host + PATH.VIP_API_GOODS_QUERY, data);
     }
 
     @buildReqData
-    async suitesQuery(data: goods.suitesQuery.Request) {
-        return await request<goods.suitesQuery.Response>(this.host + goods.suitesQuery.path, data);
+    async suitesQuery(data: types.suitesQuery.Request) {
+        return await request<types.suitesQuery.Response>(this.host + PATH.SUITES_QUERY, data);
     }
 
     @buildReqData
-    async goodsClassQuery(data: goods.goodsClassQuery.Request) {
-        return await request<goods.goodsClassQuery.Response>(this.host + goods.goodsClassQuery.path, data);
+    async goodsClassQuery(data: types.goodsClassQuery.Request) {
+        return await request<types.goodsClassQuery.Response>(this.host + PATH.GOODS_CLASS_QUERY, data);
     }
 
     @buildReqData
-    async tradePush(data: trade.tradePush.Request) {
-        return await request<trade.tradePush.Response>(this.host + trade.tradePush.path, data);
+    async tradePush(data: types.tradePush.Request) {
+        return await request<types.tradePush.Response>(this.host + PATH.TRADE_PUSH, data);
     }
 
     @buildReqData
-    async tradeQuery(data: trade.tradeQuery.Request) {
-        return await request<trade.tradeQuery.Response>(this.host + trade.tradeQuery.path, data);
+    async tradeQuery(data: types.tradeQuery.Request) {
+        return await request<types.tradeQuery.Response>(this.host + PATH.TRADE_QUERY, data);
     }
 
     @buildReqData
-    async stockoutOrderQueryTrade(data: trade.stockoutOrderQueryTrade.Request) {
-        return await request<trade.stockoutOrderQueryTrade.Response>(this.host + trade.stockoutOrderQueryTrade.path, data);
+    async stockoutOrderQueryTrade(data: types.stockoutOrderQueryTrade.Request) {
+        return await request<types.stockoutOrderQueryTrade.Response>(this.host + PATH.STOCKOUT_ORDER_QUERY_TRADE, data);
     }
 
     @buildReqData
-    async logisticsSyncQuery(data: trade.logisticsSyncQuery.Request) {
-        return await request<trade.logisticsSyncQuery.Response>(this.host + trade.logisticsSyncQuery.path, data);
+    async logisticsSyncQuery(data: types.logisticsSyncQuery.Request) {
+        return await request<types.logisticsSyncQuery.Response>(this.host + PATH.LOGISTICS_SYNC_QUERY, data);
     }
 
     @buildReqData
-    async logisticsSyncAck(data: trade.logisticsSyncAck.Request) {
-        return await request<trade.logisticsSyncAck.Response>(this.host + trade.logisticsSyncAck.path, data);
+    async logisticsSyncAck(data: types.logisticsSyncAck.Request) {
+        return await request<types.logisticsSyncAck.Response>(this.host + PATH.LOGISTICS_SYNC_ACK, data);
     }
 
     @buildReqData
-    async apiGoodsStockChangeQuery(data: trade.apiGoodsStockChangeQuery.Request) {
-        return await request<trade.apiGoodsStockChangeQuery.Response>(this.host + trade.apiGoodsStockChangeQuery.path, data);
+    async apiGoodsStockChangeQuery(data: types.apiGoodsStockChangeQuery.Request) {
+        return await request<types.apiGoodsStockChangeQuery.Response>(this.host + PATH.API_GOODS_STOCK_CHANGE_QUERY, data);
     }
 
     @buildReqData
-    async apiGoodsStockChangeAck(data: trade.apiGoodsStockChangeAck.Request) {
-        return await request<trade.apiGoodsStockChangeAck.Response>(this.host + trade.apiGoodsStockChangeAck.path, data);
+    async apiGoodsStockChangeAck(data: types.apiGoodsStockChangeAck.Request) {
+        return await request<types.apiGoodsStockChangeAck.Response>(this.host + PATH.API_GOODS_STOCK_CHANGE_ACK, data);
     }
 
     @buildReqData
-    async vipStatSalesBySpecShopWarehouseQuery(data: trade.vipStatSalesBySpecShopWarehouseQuery.Request) {
-        return await request<trade.vipStatSalesBySpecShopWarehouseQuery.Response>(this.host + trade.vipStatSalesBySpecShopWarehouseQuery.path, data);
+    async vipStatSalesBySpecShopWarehouseQuery(data: types.vipStatSalesBySpecShopWarehouseQuery.Request) {
+        return await request<types.vipStatSalesBySpecShopWarehouseQuery.Response>(this.host + PATH.VIP_STAT_SALES_BY_SPEC_SHOP_WAREHOUSE_QUERY, data);
     }
 
     @buildReqData
-    async vipStockoutSalesWeightPush(data: trade.vipStockoutSalesWeightPush.Request) {
-        return await request<trade.vipStockoutSalesWeightPush.Response>(this.host + trade.vipStockoutSalesWeightPush.path, data);
+    async vipStockoutSalesWeightPush(data: types.vipStockoutSalesWeightPush.Request) {
+        return await request<types.vipStockoutSalesWeightPush.Response>(this.host + PATH.VIP_STOCKOUT_SALES_WEIGHT_PUSH, data);
     }
 
     @buildReqData
-    async vipTradeModify(data: trade.vipTradeModify.Request) {
-        return await request<trade.vipTradeModify.Response>(this.host + trade.vipTradeModify.path, data);
+    async vipTradeModify(data: types.vipTradeModify.Request) {
+        return await request<types.vipTradeModify.Response>(this.host + PATH.VIP_TRADE_MODIFY, data);
     }
 
     @buildReqData
-    async vipApiTradeQuery(data: trade.vipApiTradeQuery.Request) {
-        return await request<trade.vipApiTradeQuery.Response>(this.host + trade.vipApiTradeQuery.path, data);
+    async vipApiTradeQuery(data: types.vipApiTradeQuery.Request) {
+        return await request<types.vipApiTradeQuery.Response>(this.host + PATH.VIP_API_TRADE_QUERY, data);
     }
 
     @buildReqData
-    async vipInvoiceInfoQuery(data: trade.vipInvoiceInfoQuery.Request) {
-        return await request<trade.vipInvoiceInfoQuery.Response>(this.host + trade.vipInvoiceInfoQuery.path, data);
+    async vipInvoiceInfoQuery(data: types.vipInvoiceInfoQuery.Request) {
+        return await request<types.vipInvoiceInfoQuery.Response>(this.host + PATH.VIP_INVOICE_INFO_QUERY, data);
     }
 
     @buildReqData
-    async vipInvoiceInfoUpdate(data: trade.vipInvoiceInfoUpdate.Request) {
-        return await request<trade.vipInvoiceInfoUpdate.Response>(this.host + trade.vipInvoiceInfoUpdate.path, data);
+    async vipInvoiceInfoUpdate(data: types.vipInvoiceInfoUpdate.Request) {
+        return await request<types.vipInvoiceInfoUpdate.Response>(this.host + PATH.VIP_INVOICE_INFO_UPDATE, data);
     }
 
     @buildReqData
-    async salesRefundPush(data: refund.salesRefundPush.Request) {
-        return await request<refund.salesRefundPush.Response>(this.host + refund.salesRefundPush.path, data);
+    async salesRefundPush(data: types.salesRefundPush.Request) {
+        return await request<types.salesRefundPush.Response>(this.host + PATH.SALES_REFUND_PUSH, data);
     }
 
     @buildReqData
-    async stockinRefundPush(data: refund.stockinRefundPush.Request) {
-        return await request<refund.stockinRefundPush.Response>(this.host + refund.stockinRefundPush.path, data);
+    async stockinRefundPush(data: types.stockinRefundPush.Request) {
+        return await request<types.stockinRefundPush.Response>(this.host + PATH.STOCKIN_REFUND_PUSH, data);
     }
 
     @buildReqData
-    async refundQuery(data: refund.refundQuery.Request) {
-        return await request<refund.refundQuery.Response>(this.host + refund.refundQuery.path, data);
+    async refundQuery(data: types.refundQuery.Request) {
+        return await request<types.refundQuery.Response>(this.host + PATH.REFUND_QUERY, data);
     }
 
     @buildReqData
-    async stockinOrderQueryRefund(data: refund.stockinOrderQueryRefund.Request) {
-        return await request<refund.stockinOrderQueryRefund.Response>(this.host + refund.stockinOrderQueryRefund.path, data);
+    async stockinOrderQueryRefund(data: types.stockinOrderQueryRefund.Request) {
+        return await request<types.stockinOrderQueryRefund.Response>(this.host + PATH.STOCKIN_ORDER_QUERY_REFUND, data);
     }
 
     @buildReqData
-    async vipStatRefundBySpecShopWarehouseQuery(data: refund.vipStatRefundBySpecShopWarehouseQuery.Request) {
-        return await request<refund.vipStatRefundBySpecShopWarehouseQuery.Response>(this.host + refund.vipStatRefundBySpecShopWarehouseQuery.path, data);
+    async vipStatRefundBySpecShopWarehouseQuery(data: types.vipStatRefundBySpecShopWarehouseQuery.Request) {
+        return await request<types.vipStatRefundBySpecShopWarehouseQuery.Response>(this.host + PATH.VIP_STAT_REFUND_BY_SPEC_SHOP_WAREHOUSE_QUERY, data);
     }
 
     @buildReqData
-    async vipApiRefundQuery(data: refund.vipApiRefundQuery.Request) {
-        return await request<refund.vipApiRefundQuery.Response>(this.host + refund.vipApiRefundQuery.path, data);
+    async vipApiRefundQuery(data: types.vipApiRefundQuery.Request) {
+        return await request<types.vipApiRefundQuery.Response>(this.host + PATH.VIP_API_REFUND_QUERY, data);
     }
 
     @buildReqData
-    async purchaseOrderPush(data: purchase.purchaseOrderPush.Request) {
-        return await request<purchase.purchaseOrderPush.Response>(this.host + purchase.purchaseOrderPush.path, data);
+    async purchaseOrderPush(data: types.purchaseOrderPush.Request) {
+        return await request<types.purchaseOrderPush.Response>(this.host + PATH.PURCHASE_ORDER_PUSH, data);
     }
 
     @buildReqData
-    async stockinPurchasePush(data: purchase.stockinPurchasePush.Request) {
-        return await request<purchase.stockinPurchasePush.Response>(this.host + purchase.stockinPurchasePush.path, data);
+    async stockinPurchasePush(data: types.stockinPurchasePush.Request) {
+        return await request<types.stockinPurchasePush.Response>(this.host + PATH.STOCKIN_PURCHASE_PUSH, data);
     }
 
     @buildReqData
-    async purchaseOrderQuery(data: purchase.purchaseOrderQuery.Request) {
-        return await request<purchase.purchaseOrderQuery.Response>(this.host + purchase.purchaseOrderQuery.path, data);
+    async purchaseOrderQuery(data: types.purchaseOrderQuery.Request) {
+        return await request<types.purchaseOrderQuery.Response>(this.host + PATH.PURCHASE_ORDER_QUERY, data);
     }
 
     @buildReqData
-    async stockinOrderQueryPurchase(data: purchase.stockinOrderQueryPurchase.Request) {
-        return await request<purchase.stockinOrderQueryPurchase.Response>(this.host + purchase.stockinOrderQueryPurchase.path, data);
+    async stockinOrderQueryPurchase(data: types.stockinOrderQueryPurchase.Request) {
+        return await request<types.stockinOrderQueryPurchase.Response>(this.host + PATH.STOCKIN_ORDER_QUERY_PURCHASE, data);
     }
 
     @buildReqData
-    async purchaseReturnPush(data: purchase.purchaseReturnPush.Request) {
-        return await request<purchase.purchaseReturnPush.Response>(this.host + purchase.purchaseReturnPush.path, data);
+    async purchaseReturnPush(data: types.purchaseReturnPush.Request) {
+        return await request<types.purchaseReturnPush.Response>(this.host + PATH.PURCHASE_RETURN_PUSH, data);
     }
 
     @buildReqData
-    async purchaseReturnOrderPush(data: purchase.purchaseReturnOrderPush.Request) {
-        return await request<purchase.purchaseReturnOrderPush.Response>(this.host + purchase.purchaseReturnOrderPush.path, data);
+    async purchaseReturnOrderPush(data: types.purchaseReturnOrderPush.Request) {
+        return await request<types.purchaseReturnOrderPush.Response>(this.host + PATH.PURCHASE_RETURN_ORDER_PUSH, data);
     }
 
     @buildReqData
-    async purchaseReturnQuery(data: purchase.purchaseReturnQuery.Request) {
-        return await request<purchase.purchaseReturnQuery.Response>(this.host + purchase.purchaseReturnQuery.path, data);
+    async purchaseReturnQuery(data: types.purchaseReturnQuery.Request) {
+        return await request<types.purchaseReturnQuery.Response>(this.host + PATH.PURCHASE_RETURN_QUERY, data);
     }
 
     @buildReqData
-    async stockoutOrderQueryReturn(data: purchase.stockoutOrderQueryReturn.Request) {
-        return await request<purchase.stockoutOrderQueryReturn.Response>(this.host + purchase.stockoutOrderQueryReturn.path, data);
+    async stockoutOrderQueryReturn(data: types.stockoutOrderQueryReturn.Request) {
+        return await request<types.stockoutOrderQueryReturn.Response>(this.host + PATH.STOCKOUT_ORDER_QUERY_RETURN, data);
     }
 
     @buildReqData
-    async purchaseApplyQuery(data: purchase.purchaseApplyQuery.Request) {
-        return await request<purchase.purchaseApplyQuery.Response>(this.host + purchase.purchaseApplyQuery.path, data);
+    async purchaseApplyQuery(data: types.purchaseApplyQuery.Request) {
+        return await request<types.purchaseApplyQuery.Response>(this.host + PATH.PURCHASE_APPLY_QUERY, data);
     }
 
     @buildReqData
-    async stockQuery(data: stock.stockQuery.Request) {
-        return await request<stock.stockQuery.Response>(this.host + stock.stockQuery.path, data);
+    async stockQuery(data: types.stockQuery.Request) {
+        return await request<types.stockQuery.Response>(this.host + PATH.STOCK_QUERY, data);
     }
 
     @buildReqData
-    async stockSyncByPd(data: stock.stockSyncByPd.Request) {
-        return await request<stock.stockSyncByPd.Response>(this.host + stock.stockSyncByPd.path, data);
+    async stockSyncByPd(data: types.stockSyncByPd.Request) {
+        return await request<types.stockSyncByPd.Response>(this.host + PATH.STOCK_SYNC_BY_PD, data);
     }
 
     @buildReqData
-    async stockPdOrderQuery(data: stock.stockPdOrderQuery.Request) {
-        return await request<stock.stockPdOrderQuery.Response>(this.host + stock.stockPdOrderQuery.path, data);
+    async stockPdOrderQuery(data: types.stockPdOrderQuery.Request) {
+        return await request<types.stockPdOrderQuery.Response>(this.host + PATH.STOCK_PD_ORDER_QUERY, data);
     }
 
     @buildReqData
-    async stockinOrderPush(data: stock.stockinOrderPush.Request) {
-        return await request<stock.stockinOrderPush.Response>(this.host + stock.stockinOrderPush.path, data);
+    async stockinOrderPush(data: types.stockinOrderPush.Request) {
+        return await request<types.stockinOrderPush.Response>(this.host + PATH.STOCKIN_ORDER_PUSH, data);
     }
 
     @buildReqData
-    async stockinOrderQuery(data: stock.stockinOrderQuery.Request) {
-        return await request<stock.stockinOrderQuery.Response>(this.host + stock.stockinOrderQuery.path, data);
+    async stockinOrderQuery(data: types.stockinOrderQuery.Request) {
+        return await request<types.stockinOrderQuery.Response>(this.host + PATH.STOCKIN_ORDER_QUERY, data);
     }
 
     @buildReqData
-    async stockoutOrderPush(data: stock.stockoutOrderPush.Request) {
-        return await request<stock.stockoutOrderPush.Response>(this.host + stock.stockoutOrderPush.path, data);
+    async stockoutOrderPush(data: types.stockoutOrderPush.Request) {
+        return await request<types.stockoutOrderPush.Response>(this.host + PATH.STOCKOUT_ORDER_PUSH, data);
     }
 
     @buildReqData
-    async stockoutOrderQuery(data: stock.stockoutOrderQuery.Request) {
-        return await request<stock.stockoutOrderQuery.Response>(this.host + stock.stockoutOrderQuery.path, data);
+    async stockoutOrderQuery(data: types.stockoutOrderQuery.Request) {
+        return await request<types.stockoutOrderQuery.Response>(this.host + PATH.STOCKOUT_ORDER_QUERY, data);
     }
 
     @buildReqData
-    async stockTransferPush(data: stock.stockTransferPush.Request) {
-        return await request<stock.stockTransferPush.Response>(this.host + stock.stockTransferPush.path, data);
+    async stockTransferPush(data: types.stockTransferPush.Request) {
+        return await request<types.stockTransferPush.Response>(this.host + PATH.STOCK_TRANSFER_PUSH, data);
     }
 
     @buildReqData
-    async stockoutTransferPush(data: stock.stockoutTransferPush.Request) {
-        return await request<stock.stockoutTransferPush.Response>(this.host + stock.stockoutTransferPush.path, data);
+    async stockoutTransferPush(data: types.stockoutTransferPush.Request) {
+        return await request<types.stockoutTransferPush.Response>(this.host + PATH.STOCKOUT_TRANSFER_PUSH, data);
     }
 
     @buildReqData
-    async stockinTransferPush(data: stock.stockinTransferPush.Request) {
-        return await request<stock.stockinTransferPush.Response>(this.host + stock.stockinTransferPush.path, data);
+    async stockinTransferPush(data: types.stockinTransferPush.Request) {
+        return await request<types.stockinTransferPush.Response>(this.host + PATH.STOCKIN_TRANSFER_PUSH, data);
     }
 
     @buildReqData
-    async stockTransferQuery(data: stock.stockTransferQuery.Request) {
-        return await request<stock.stockTransferQuery.Response>(this.host + stock.stockTransferQuery.path, data);
+    async stockTransferQuery(data: types.stockTransferQuery.Request) {
+        return await request<types.stockTransferQuery.Response>(this.host + PATH.STOCK_TRANSFER_QUERY, data);
     }
 
     @buildReqData
-    async vipStockQueryAll(data: stock.vipStockQueryAll.Request) {
-        return await request<stock.vipStockQueryAll.Response>(this.host + stock.vipStockQueryAll.path, data);
+    async vipStockQueryAll(data: types.vipStockQueryAll.Request) {
+        return await request<types.vipStockQueryAll.Response>(this.host + PATH.VIP_STOCK_QUERY_ALL, data);
     }
 
     @buildReqData
-    async vipWmsStockinoutOrderPush(data: stock.vipWmsStockinoutOrderPush.Request) {
-        return await request<stock.vipWmsStockinoutOrderPush.Response>(this.host + stock.vipWmsStockinoutOrderPush.path, data);
+    async vipWmsStockinoutOrderPush(data: types.vipWmsStockinoutOrderPush.Request) {
+        return await request<types.vipWmsStockinoutOrderPush.Response>(this.host + PATH.VIP_WMS_STOCKINOUT_ORDER_PUSH, data);
     }
 
     @buildReqData
-    async vipStockOutsideWmsQuery(data: stock.vipStockOutsideWmsQuery.Request) {
-        return await request<stock.vipStockOutsideWmsQuery.Response>(this.host + stock.vipStockOutsideWmsQuery.path, data);
+    async vipStockOutsideWmsQuery(data: types.vipStockOutsideWmsQuery.Request) {
+        return await request<types.vipStockOutsideWmsQuery.Response>(this.host + PATH.VIP_STOCK_OUTSIDE_WMS_QUERY, data);
     }
 
     @buildReqData
-    async vipJitReturnStockinOrderQuery(data: stock.vipJitReturnStockinOrderQuery.Request) {
-        return await request<stock.vipJitReturnStockinOrderQuery.Response>(this.host + stock.vipJitReturnStockinOrderQuery.path, data);
+    async vipJitReturnStockinOrderQuery(data: types.vipJitReturnStockinOrderQuery.Request) {
+        return await request<types.vipJitReturnStockinOrderQuery.Response>(this.host + PATH.VIP_JIT_RETURN_STOCKIN_ORDER_QUERY, data);
     }
 
     @buildReqData
-    async vipJitStockoutOrderQuery(data: stock.vipJitStockoutOrderQuery.Request) {
-        return await request<stock.vipJitStockoutOrderQuery.Response>(this.host + stock.vipJitStockoutOrderQuery.path, data);
+    async vipJitStockoutOrderQuery(data: types.vipJitStockoutOrderQuery.Request) {
+        return await request<types.vipJitStockoutOrderQuery.Response>(this.host + PATH.VIP_JIT_STOCKOUT_ORDER_QUERY, data);
     }
 
 }
