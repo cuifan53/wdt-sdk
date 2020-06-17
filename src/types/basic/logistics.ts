@@ -31,7 +31,7 @@ export interface Response extends base.Response {
 
 }
 
-export interface Logistics {
+export interface Logistics extends base.Base {
 
     /**
      * 主键

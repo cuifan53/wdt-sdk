@@ -55,7 +55,7 @@ export interface Response extends base.Response {
 
 }
 
-export interface Provider {
+export interface Provider extends base.Base {
 
     /**
      * 供应商ID 主键

@@ -1,4 +1,10 @@
-export interface Request {
+export interface Base {
+
+    [propName: string]: any;
+
+}
+
+export interface Request extends Base {
 
     /**
      * 卖家账号
@@ -24,11 +30,9 @@ export interface Request {
      */
     sign?: string;
 
-    [propName: string]: any;
-
 }
 
-export interface Response {
+export interface Response extends Base {
 
     /**
      * 错误码 
@@ -40,7 +44,5 @@ export interface Response {
      * 错误描述
      */
     message: string;
-
-    [propName: string]: any;
 
 }

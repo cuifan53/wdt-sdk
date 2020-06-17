@@ -1,13 +1,14 @@
 import * as PATH from './path';
 import * as types from './types';
 import { Request } from './types/base';
-import { getTimestamp, request, sign } from './utils';
+import { request, sign } from './utils';
 
 function buildReqData(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const original = descriptor.value;
     descriptor.value = function (data: Request) {
         const { sid, appkey, appsecret } = this as Wdt;
-        data = { ...data, sid: sid, appkey: appkey, timestamp: getTimestamp() };
+        const timestamp = Math.round(new Date().getTime() / 1000);
+        data = { ...data, sid: sid, appkey: appkey, timestamp };
         data.sign = sign(data, appsecret);
         return original.apply(this, [data]);
     }

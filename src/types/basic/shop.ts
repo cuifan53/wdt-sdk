@@ -40,9 +40,10 @@ export interface Response extends base.Response {
      * 店铺详情数据节点
      */
     shoplist: Shop[];
+
 }
 
-export interface Shop {
+export interface Shop extends base.Base {
 
     /**
      * 平台ID

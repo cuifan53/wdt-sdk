@@ -55,7 +55,7 @@ export interface Response extends base.Response {
 
 }
 
-export interface Warehouse {
+export interface Warehouse extends base.Base {
 
     /**
      * 仓库编号

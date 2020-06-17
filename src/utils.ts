@@ -2,12 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { createHash } from 'crypto';
 import { base } from './types';
 
-export function getTimestamp(date?: Date) {
-    date = date || new Date();
-    return Math.round(date.getTime() / 1000);
-}
-
-export function sortObject<T extends Object>(obj: T) {
+function sortObject<T extends Object>(obj: T) {
     const sort = {} as T;
     Object.keys(obj).sort().forEach(function (key) {
         if (![undefined, null, ''].includes(obj[key]))
@@ -16,7 +11,7 @@ export function sortObject<T extends Object>(obj: T) {
     return sort;
 }
 
-export function encrypt(k: string, v: string) {
+function encrypt(k: string, v: string) {
     let kLen = `${Buffer.from(k).toString('utf-8').length}`;
     if (kLen.length < 2) {
         kLen = `00${kLen}`.substr(-2, 2);
