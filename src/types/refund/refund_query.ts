@@ -6,10 +6,10 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
 }
 
-export interface Response extends base.Response {
+export interface Response extends base.Base {
 
 }

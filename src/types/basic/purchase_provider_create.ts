@@ -6,34 +6,34 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 供应商编号
      * 代表供应商所有属性的唯一编码，用于供应商区分，ERP内支持自定义（ERP供应商界面设置），用于创建供应商数据信息
      */
-    provider_no: string;
+    provider_no?: string;
 
     /**
      * 供应商名称
      */
-    provider_name: string;
+    provider_name?: string;
 
     /**
      * 最小采购量
      * decimal(19,4)
      */
-    min_purchase_num: number;
+    min_purchase_num?: number;
 
     /**
      * 采购周期
      */
-    purchase_cycle_days: number;
+    purchase_cycle_days?: number;
 
     /**
      * 到货周期
      */
-    arrive_cycle_days: number;
+    arrive_cycle_days?: number;
 
     /**
      * 联系人
@@ -105,4 +105,4 @@ export interface Request extends base.Request {
 
 }
 
-export interface Response extends base.Response { }
+export interface Response extends base.Base { }

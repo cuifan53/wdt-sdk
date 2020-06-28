@@ -6,17 +6,17 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 货品节点
      * 包含SPU所有属性信息的数据节点
      */
-    goods_list: Goods[];
+    goods_list?: Goods[];
 
 }
 
-export interface Response extends base.Response { }
+export interface Response extends base.Base { }
 
 export interface Goods extends base.Base {
 
@@ -24,18 +24,18 @@ export interface Goods extends base.Base {
      * 货品编号
      * 代表货品(spu)所有属性的唯一编号，用于系统货品区分
      */
-    goods_no: string;
+    goods_no?: string;
 
     /**
      * 货品类别
      * 货品类别 1销售商品 2原材料 3包装 4周转材料5虚拟商品6固定资产 0其它
      */
-    goods_type: number;
+    goods_type?: number;
 
     /**
      * 货品名称
      */
-    goods_name: string;
+    goods_name?: string;
 
     /**
      * 货品简称
@@ -121,7 +121,7 @@ export interface Goods extends base.Base {
      * 单品节点
      * 包含sku所有属性信息的数据节点
      */
-    spec_list: Spec[];
+    spec_list?: Spec[];
 
 }
 
@@ -131,7 +131,7 @@ export interface Spec extends base.Base {
      * 商家编码
      * 代表单品(sku)所有属性的唯一编码，用于系统单品区分
      */
-    spec_no: string;
+    spec_no?: string;
 
     /**
      * 规格码

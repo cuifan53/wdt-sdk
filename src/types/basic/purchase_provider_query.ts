@@ -6,13 +6,13 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 返回字段
      * 需要返回的字段，多个用‘，’隔开（可选字段：provider_id,provider_no,provider_name,contact,telno,mobile,fax,zip,email,qq,wangwang,address,website,remark,is_disabled,deleted,modified,created）
      */
-    column: string;
+    column?: string;
 
     /**
      * 供应商编号
@@ -40,13 +40,13 @@ export interface Request extends base.Request {
 
 }
 
-export interface Response extends base.Response {
+export interface Response extends base.Base {
 
     /**
      * 数据条数
      * 只有page_no = 0 时，才返回的符合条件的数据总条数，用来分页
      */
-    total_count?: number;
+    total_count: number;
 
     /**
      * 供应商信息列表

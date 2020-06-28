@@ -6,7 +6,7 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 商家编码
@@ -39,13 +39,13 @@ export interface Request extends base.Request {
      * 开始时间
      * 按最后修改时间增量查询数据 格式：YYYY-MM-DD HH:MM:SS
      */
-    start_time: string;
+    start_time?: string;
 
     /**
      * 结束时间
      * 按最后修改时间增量查询数据 格式：YYYY-MM-DD HH:MM:SS
      */
-    end_time: string;
+    end_time?: string;
 
     /**
      * 已删除货品
@@ -67,13 +67,13 @@ export interface Request extends base.Request {
 
 }
 
-export interface Response extends base.Response {
+export interface Response extends base.Base {
 
     /**
     * 数据条数
     * 只有page_no = 0 时，才返回的符合条件的数据总条数，用来分页
     */
-    total_count?: number;
+    total_count: number;
 
     /**
      * 货品节点

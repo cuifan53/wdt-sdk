@@ -6,7 +6,7 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 仓库编号
@@ -40,13 +40,13 @@ export interface Request extends base.Request {
 
 }
 
-export interface Response extends base.Response {
+export interface Response extends base.Base {
 
     /**
      * 数据条数
      * 只有page_no = 0 时，才返回的符合条件的数据总条数，用来分页
      */
-    total_count?: number;
+    total_count: number;
 
     /**
      * 仓库详情数据节点

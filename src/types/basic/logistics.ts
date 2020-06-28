@@ -6,7 +6,7 @@
 
 import * as base from '../base';
 
-export interface Request extends base.Request {
+export interface Request extends base.Base {
 
     /**
      * 物流编号
@@ -22,7 +22,7 @@ export interface Request extends base.Request {
 
 }
 
-export interface Response extends base.Response {
+export interface Response extends base.Base {
 
     /**
      * 物流档案列表节点
